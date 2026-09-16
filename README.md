@@ -11,7 +11,6 @@ Four Power BI dashboards spanning credit-risk modeling, financial-services repor
 ## Dashboards
 
 ### Loan Default Risk Prediction
-*Capstone project*
 
 A Random Forest classifier trained on the HMEQ home-equity dataset to flag high-risk borrowers before funding decisions are made, with SHAP values explaining what drives each prediction.
 
