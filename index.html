@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daria Nikoliouk | Analytics &amp; BI Portfolio</title>
+<meta name="description" content="Power BI dashboards spanning credit-risk modeling, financial-services reporting, and retail analytics.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F4F6F8;
+    --paper: #FFFFFF;
+    --ink: #16202E;
+    --ink-soft: #4E5A6B;
+    --ink-faint: #8894A3;
+    --line: #DEE3E9;
+    --accent: #146B5D;
+    --gold: #A2782E;
+    --gold-soft: #F3E9D6;
+    --shadow: 0 1px 2px rgba(22,32,46,0.04), 0 8px 24px rgba(22,32,46,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D131D; --paper: #141C29; --ink: #EBEEF2; --ink-soft: #A6B0BE;
+      --ink-faint: #6C7889; --line: #26303F; --accent: #3FBBA3;
+      --gold: #D9AA55; --gold-soft: #2E2718;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D131D; --paper: #141C29; --ink: #EBEEF2; --ink-soft: #A6B0BE;
+    --ink-faint: #6C7889; --line: #26303F; --accent: #3FBBA3;
+    --gold: #D9AA55; --gold-soft: #2E2718;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    padding: 0 20px; font-size: 14px;
+  }
+  .page { max-width: 900px; margin: 0 auto; padding-block: 56px 40px; }
+  .masthead {
+    display: flex; flex-direction: column; gap: 18px;
+    padding-bottom: 32px; border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 500;
+    font-size: clamp(34px, 5vw, 50px); line-height: 1.08; margin: 0;
+    text-wrap: balance; color: var(--ink);
+  }
+  .role { font-size: 17px; color: var(--ink-soft); max-width: 62ch; }
+  .intro { font-size: 15.5px; line-height: 1.65; color: var(--ink-soft); max-width: 60ch; margin: 0; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 2px; }
+  .contact-row a {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px;
+    color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent;
+  }
+  .contact-row a:hover, .contact-row a:focus-visible { border-bottom-color: var(--accent); outline: none; }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .pill {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft);
+    border: 1px solid var(--line); border-radius: 100px; padding: 5px 12px; background: var(--paper);
+  }
+  .section-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faint); margin: 40px 0 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 26px 22px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 16px;
+    opacity: 0; animation: rise 0.5s ease forwards;
+  }
+  .card:nth-child(1) { animation-delay: 0.02s; }
+  .card:nth-child(2) { animation-delay: 0.08s; }
+  .card:nth-child(3) { animation-delay: 0.14s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .card { animation: none; opacity: 1; } }
+  .card.capstone { border-color: color-mix(in srgb, var(--gold) 40%, var(--line)); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+  }
+  .kicker.portfolio { color: var(--ink-faint); background: var(--bg); border: 1px solid var(--line); }
+  .kicker.capstone { color: var(--gold); background: var(--gold-soft); }
+  .card h2 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 23px;
+    margin: 0; line-height: 1.2; text-wrap: balance;
+  }
+  .card p.desc { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: -6px 0 0; }
+  .stats { display: flex; gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; }
+  .stat { flex: 1; padding: 0 14px; border-left: 1px solid var(--line); }
+  .stat:first-child { border-left: none; padding-left: 0; }
+  .stat .num {
+    font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+    font-weight: 500; font-size: 17px; color: var(--ink); display: block; line-height: 1.2;
+  }
+  .stat .lbl { font-size: 11.5px; color: var(--ink-faint); margin-top: 3px; line-height: 1.3; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px; color: var(--ink-soft); background: var(--bg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .card-foot { margin-top: auto; padding-top: 4px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .view-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+    color: var(--accent); text-decoration: none; border: 1px solid var(--accent);
+    border-radius: 100px; padding: 8px 16px; transition: background 0.15s ease, color 0.15s ease;
+  }
+  .view-link:hover, .view-link:focus-visible { background: var(--accent); color: var(--paper); outline: none; }
+  .view-link.secondary { color: var(--ink-soft); border-color: var(--line); }
+  .view-link.secondary:hover, .view-link.secondary:focus-visible { background: var(--ink-soft); color: var(--paper); }
+  .view-link svg { width: 13px; height: 13px; }
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint);
+  }
+  @media (max-width: 480px) {
+    .page { padding-block: 40px 32px; }
+    .stats { flex-direction: column; gap: 10px; }
+    .stat { border-left: none; padding: 0; }
+    .stat:not(:first-child) { border-top: 1px solid var(--line); padding-top: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">Analytics &amp; Business Intelligence Portfolio</div>
+    <h1>Daria Nikoliouk</h1>
+    <div class="role">Data Analyst, Credit Risk &amp; Lending Analytics</div>
+    <p class="intro">Four Power BI dashboards spanning credit-risk modeling, financial-services reporting, and retail analytics. Each one below is live and interactive, so you can filter, drill down, and explore the underlying model.</p>
+    <div class="contact-row">
+      <a href="https://github.com/DariaNikol" target="_blank" rel="noopener">github.com/DariaNikol</a>
+      <a href="https://linkedin.com/in/darianikoliouk" target="_blank" rel="noopener">linkedin.com/in/darianikoliouk</a>
+      <a href="mailto:daria.nikoliouk@gmail.com">daria.nikoliouk@gmail.com</a>
+    </div>
+    <div class="stack-row">
+      <span class="pill">Power BI</span>
+      <span class="pill">DAX</span>
+      <span class="pill">Python</span>
+      <span class="pill">SQL</span>
+    </div>
+  </header>
+
+  <div class="section-label">Dashboards</div>
+
+  <div class="grid">
+
+    <article class="card capstone">
+      <div class="card-top">
+        <h2>Loan Default Risk Prediction</h2>
+        <span class="kicker capstone">Capstone</span>
+      </div>
+      <p class="desc">A Random Forest classifier trained on the HMEQ home-equity dataset to flag high-risk borrowers before funding decisions are made, with SHAP values explaining what drives each prediction.</p>
+      <div class="stats">
+        <div class="stat"><span class="num">$107.6M</span><span class="lbl">loan portfolio analyzed</span></div>
+        <div class="stat"><span class="num">87.5%</span><span class="lbl">model accuracy</span></div>
+        <div class="stat"><span class="num">81.5%</span><span class="lbl">recall (RF, wider grid)</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">Power BI</span><span class="tag">Python</span>
+        <span class="tag">Random Forest</span><span class="tag">SHAP</span>
+      </div>
+      <div class="card-foot">
+        <a class="view-link" href="https://app.powerbi.com/view?r=eyJrIjoiOTRmYWY1Y2EtMjdlYy00NGY1LWEyZmMtZTAxY2NiODgzNjM3IiwidCI6Ijc4NmZkYWYwLWY3YTgtNDI3MC05ZTFlLTdjZTdlZDc5MDNmNyJ9" target="_blank" rel="noopener">
+          View live dashboard
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <h2>FinCo Financial Services</h2>
+        <span class="kicker portfolio">Portfolio</span>
+      </div>
+      <p class="desc">An executive dashboard tracking transaction volume and revenue across a full retail-banking product line, from deposits and cards to loans and insurance.</p>
+      <div class="stats">
+        <div class="stat"><span class="num">$35.7M</span><span class="lbl">total revenue tracked</span></div>
+        <div class="stat"><span class="num">6</span><span class="lbl">product lines</span></div>
+        <div class="stat"><span class="num">'23&ndash;'24</span><span class="lbl">reporting period</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data Modeling</span>
+      </div>
+      <div class="card-foot">
+        <a class="view-link" href="https://app.powerbi.com/view?r=eyJrIjoiMTI4ZjljNjYtNDNiYy00ODc2LTgwMzEtNDQwZjhkZjRiYzQ3IiwidCI6Ijc4NmZkYWYwLWY3YTgtNDI3MC05ZTFlLTdjZTdlZDc5MDNmNyJ9" target="_blank" rel="noopener">
+          View live dashboard
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <h2>Global Electronics</h2>
+        <span class="kicker portfolio">Portfolio</span>
+      </div>
+      <p class="desc">A multi-continent retail analytics build tracking profit, revenue, and delivery performance across product categories and customer segments.</p>
+      <div class="stats">
+        <div class="stat"><span class="num">$32.7M</span><span class="lbl">total profit</span></div>
+        <div class="stat"><span class="num">Multi</span><span class="lbl">continent coverage</span></div>
+        <div class="stat"><span class="num">By seg.</span><span class="lbl">category &amp; gender split</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">Power BI</span><span class="tag">DAX</span>
+      </div>
+      <div class="card-foot">
+        <a class="view-link" href="https://app.powerbi.com/view?r=eyJrIjoiMTA5N2FjMjYtMTllMi00ZjZjLTgyNjUtOWYxNzUwODhlOGMzIiwidCI6Ijc4NmZkYWYwLWY3YTgtNDI3MC05ZTFlLTdjZTdlZDc5MDNmNyJ9" target="_blank" rel="noopener">
+          View live dashboard
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <h2>Retail Sales &amp; Profitability</h2>
+        <span class="kicker portfolio">Portfolio</span>
+      </div>
+      <p class="desc">A profitability analysis comparing revenue, cost of goods sold, and margin across products and store locations.</p>
+      <div class="stats">
+        <div class="stat"><span class="num">$14.4M</span><span class="lbl">total revenue</span></div>
+        <div class="stat"><span class="num">By store</span><span class="lbl">margin comparison</span></div>
+        <div class="stat"><span class="num">By SKU</span><span class="lbl">product-level COGS</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">Power BI</span><span class="tag">DAX</span>
+      </div>
+      <div class="card-foot">
+        <a class="view-link" href="https://app.powerbi.com/view?r=eyJrIjoiNjAxZTRiNzQtN2Q2ZC00OWM3LTgwN2YtNzRmN2I0ZjVhYTdhIiwidCI6Ijc4NmZkYWYwLWY3YTgtNDI3MC05ZTFlLTdjZTdlZDc5MDNmNyJ9" target="_blank" rel="noopener">
+          View live dashboard
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    <span>Built in Power BI</span>
+    <span>Portfolio last updated September 2026</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
